@@ -15,17 +15,18 @@ hooks:
   post-staging:
     - python manage.py syncdb --noinput
     - python manage.py migrate
+    - python manage.py collectstatic
 ignores:
-  - *.pyc
-  - *.pyo
-  - *.swp
-  - *.un~
-  - *.db
-  - *.dump
-  - settings/local.py
-  - .codeintel
-  - *.sublime*
-  - .coverage
-  - _coverage/*
-  - .noseids
-  - celerybeat-schedule
+  - "*.pyc"
+  - "*.pyo"
+  - "*.swp"
+  - "*.un~"
+  - "*.db"
+  - "*.dump"
+  - "settings/local.py"
+  - ".codeintel"
+  - "*.sublime*"
+  - ".coverage"
+  - "_coverage/*"
+  - ".noseids"
+  - "celerybeat-schedule"
