@@ -5,6 +5,8 @@ import sys
 
 if 'HEROKU' in os.environ:
     from .heroku import *
+elif 'STACKATO' in os.environ:
+    from .stackato import *
 elif 'TRAVIS' in os.environ:
     from .travis import *
 else:

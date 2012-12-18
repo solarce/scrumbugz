@@ -1,0 +1,31 @@
+name: scrumbugz
+framework: python
+runtime: python27
+env:
+  DJANGO_SETTINGS_MODULE: settings
+  PROD_MODE: true
+  STACKATO: true
+min_version:
+  client: 1.4.3
+services:
+  ${name}-db: postgresql
+  ${name}-cache: memcached
+  ${name}-queue: redis
+hooks:
+  post-staging:
+    - python manage.py syncdb --noinput
+    - python manage.py migrate
+ignores:
+  - *.pyc
+  - *.pyo
+  - *.swp
+  - *.un~
+  - *.db
+  - *.dump
+  - settings/local.py
+  - .codeintel
+  - *.sublime*
+  - .coverage
+  - _coverage/*
+  - .noseids
+  - celerybeat-schedule
