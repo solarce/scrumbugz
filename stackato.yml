@@ -5,12 +5,18 @@ env:
   DJANGO_SETTINGS_MODULE: settings
   PROD_MODE: true
   STACKATO: true
+  PIP_REQUIREMENTS_FILE: requirements-stackato.txt
+requirements:
+  pypm:
+    - psycopg2
+    - redis
+    - hiredis
 min_version:
   client: 1.4.3
 services:
   ${name}-db: postgresql
   ${name}-cache: memcached
-  ${name}-queue: redis
+  ${name}-redis: redis
 hooks:
   post-staging:
     - python manage.py syncdb --noinput
