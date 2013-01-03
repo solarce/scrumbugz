@@ -1,4 +1,4 @@
-name: scrumbugz
+name: scrumbugz-solarce
 framework: python
 runtime: python27
 env:
@@ -7,21 +7,36 @@ env:
   STACKATO: true
   PIP_REQUIREMENTS_FILE: requirements-stackato.txt
 requirements:
+  ubuntu:
+    - libmemcached-dev
   pypm:
     - psycopg2
     - redis
     - hiredis
+    - pytz==2012d
+    - South==0.7.5
+    - Jinja2==2.6
+    - celery==3.0.9
+    - Django==1.4.2
+    - python-dateutil==1.5
+    - django-storages==1.1.4
+    - boto==2.4.1
+    - raven==1.8.4
+    - jingo==0.4
+    - django-nose==1.1
+    - django-cronjobs==0.2.3
+    - django-model-utils==1.1.0
+    - dj-database-url
 min_version:
   client: 1.4.3
 services:
   ${name}-db: postgresql
   ${name}-cache: memcached
   ${name}-redis: redis
+  ${name}-cache: filesystem
 hooks:
   post-staging:
     - python manage.py syncdb --noinput
-    - python manage.py migrate
-    - python manage.py collectstatic
 ignores:
   - "*.pyc"
   - "*.pyo"
